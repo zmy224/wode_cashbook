@@ -1,0 +1,47 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/personal/personal"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "backgroundColor": "#eee",
+    "enablePullDownRefresh": true,
+    "navigationBarTitleText": "",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "#a9b7b7",
+    "selectedColor": "#11cd6e",
+    "borderStyle": "black",
+    "list": [
+      {
+        "selectedIconPath": "static/images/account3.png",
+        "iconPath": "static/images/account2.png",
+        "pagePath": "pages/index/index",
+        "text": "流水"
+      },
+      {
+        "selectedIconPath": "static/images/zhanghu.png",
+        "iconPath": "static/images/account.png",
+        "pagePath": "pages/logs/logs",
+        "text": "账户"
+      },
+      {
+        "selectedIconPath": "static/images/echarts1.png",
+        "iconPath": "static/images/echarts2.png",
+        "pagePath": "pages/personal/personal",
+        "text": "图表"
+      },
+      {
+        "selectedIconPath": "static/images/wodedangxuan.png",
+        "iconPath": "static/images/personal.png",
+        "pagePath": "pages/personal/personal",
+        "text": "我的"
+      }
+    ]
+  },
+  "sitemapLocation": "sitemap.json"
+}
