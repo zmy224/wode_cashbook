@@ -1,0 +1,28 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="navTop">
+    <!--  5月 -->
+    <view>
+      <text class='number'>5</text>
+      <text>月*支出</text>
+    </view>
+    <view class='middle'>
+      <text class='number'> 0.00</text>
+      <text class='eyeopen' bindtap='toggleEyes' wx-if='{{!isShowEye}}'></text>
+      <text class='eyeclose' bindtap='toggleEyes' wx-if='{{isShowEye}}'></text>
+
+    </view>
+    <!-- 收入结余 -->
+    <view class='total'>
+      <text>收入</text>
+      <text class='number'>3.99</text> |
+      <text>结余</text>
+      <text class='number'>4.99</text>
+    </view>
+
+    <view>
+      <tab></tab>
+    </view>
+  </view>
+  <singleItem> </singleItem>
+</view>

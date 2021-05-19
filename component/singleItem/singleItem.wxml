@@ -1,0 +1,31 @@
+<!--component/singleItem/singleItem.wxml-->
+<view class='singleItem'>
+  <view class='title'>
+    <view style='height:20px;'>
+      <view class='left'>31日/1月</view>
+      <view class='right'>+0.00 -30.00</view>
+    </view>
+    <view class='subitem'>
+      <view class='subleft'>
+        <image src='../../static/images/tubiao_3.png'></image>
+        <view class='subtop'>
+        <view class='kind'>买锅</view>
+         <view class='des'>备注</view>
+       </view>
+        </view>
+      <view class='subright'>45</view>
+    </view>
+    <view class='subitem'>
+      <view class='subleft'>
+        <image src='../../static/images/tubiao_3.png'></image>
+        <view class='subtop'>
+        <view class='kind'>买锅</view>
+         <view class='des'>备注</view>
+       </view>
+        </view>
+      <view class='subright'>45</view>
+    </view>
+  </view>
+
+
+</view>

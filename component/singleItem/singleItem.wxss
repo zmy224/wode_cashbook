@@ -1,0 +1,35 @@
+/* component/singleItem/singleItem.wxss */
+
+.singleItem .left {
+ float: left;
+}
+
+.singleItem .right {
+ float: right;
+ 
+}
+.subitem {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between
+ 
+}
+
+.subitem .subleft {
+  display: flex;
+ align-items: center;
+}
+/* .subitem .subleft image  {
+  width:60px;
+  height: 60px;
+} */
+.subtop .des {
+  color:#eee;
+  font-size: 12px;
+}
+
+.subtop .kind{
+  font-size: 14px;
+}

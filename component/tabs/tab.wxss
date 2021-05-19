@@ -1,0 +1,10 @@
+/* component/tabs/tab.wxss */
+.period {
+  margin-top: 10px;
+  font-size:14px;
+  height: 40px;
+  width: 100%;
+}
+.period .item  {
+  margin-right: 10px;
+}
