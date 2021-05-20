@@ -24,5 +24,9 @@
       <tab></tab>
     </view>
   </view>
-  <singleItem> </singleItem>
+  <view wx:for="{{speenList}}"  wx:for-item="dayDetail" wx:key="dayDetail">
+ 
+    <singleItem dayDetail="{{dayDetail}}"></singleItem>
+  </view>
+ 
 </view>

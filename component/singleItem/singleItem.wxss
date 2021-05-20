@@ -1,5 +1,7 @@
 /* component/singleItem/singleItem.wxss */
-
+.singleItem  {
+  margin:15px;
+}
 .singleItem .left {
  float: left;
 }
@@ -21,10 +23,10 @@
   display: flex;
  align-items: center;
 }
-/* .subitem .subleft image  {
+.subitem .subleft image  {
   width:60px;
   height: 60px;
-} */
+}
 .subtop .des {
   color:#eee;
   font-size: 12px;

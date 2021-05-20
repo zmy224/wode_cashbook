@@ -1,12 +1,14 @@
 //index.js
 //获取应用实例
-
+let utils =  require('../../utils/util.js')
 const app = getApp()
 
 Page({
   data: {
     // 小眼睛
-   isShowEye:true
+   isShowEye:true,
+   originList:[],//  原始数据
+   speenList:[],// 列表
   },
  
   onLoad: function () {
@@ -78,9 +80,40 @@ Page({
 },
 // 获取花费列表
 getDayList(){
+  // 类数组对象：判断他的length是否存在---array.from转换
   wx.cloud.database().collection('spendD').get().then(res=>{
     console.log(res,'resss');
+    this.data.originList = res.data || [];
+  this.setData({
+    originList: res.data,
+    speenList:this.groupBy( res.data)
   })
+   this.data.speenList = this.groupBy( this.data.originList);
+   console.log( this.data.speenList,'speenList')
+  })
+},
+// 数据分组 根据天周月分
+groupBy(list){
+  let filter={}; // 过滤器 
+  let dResultList=[];
+  list.forEach(item=>{
+    item.timeD  = utils.formatTime(item.time);
+    // filter 存在这一天吗存在就push 不存在就设初始值是【】
+    if(!filter[item.timeD]){
+      filter[item.timeD ]=[]
+    }
+    filter[item.timeD].push(item);
+  })
+  for(let key in  filter){
+    dResultList.push({
+    period:key,
+    child:filter[key]
+  });
+  }
+  // return filter 
+  // 对象遍历出问题了 还是转换成数组
+  // console.log(dResultList,'dResultList')
+  return dResultList
 }
 
 

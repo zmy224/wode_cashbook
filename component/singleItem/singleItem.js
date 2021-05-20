@@ -4,7 +4,10 @@ Component({
    * 组件的属性列表
    */
   properties: {
-
+    dayDetail:{
+      type:Object,
+      value:''
+    }
   },
 
   /**
@@ -19,5 +22,8 @@ Component({
    */
   methods: {
 
-  }
+  },
+  onLoad: function () {
+   console.log(this.properties.dayDetail,'ffffff')
+  },
 })
