@@ -30,6 +30,12 @@
         "text": "账户"
       },
       {
+        "selectedIconPath": "static/images/zhanghu.png",
+        "iconPath": "static/images/account.png",
+        "pagePath": "pages/personal/personal",
+        "text": "记一笔"
+      },
+      {
         "selectedIconPath": "static/images/echarts1.png",
         "iconPath": "static/images/echarts2.png",
         "pagePath": "pages/personal/personal",

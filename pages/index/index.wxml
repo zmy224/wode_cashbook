@@ -21,7 +21,10 @@
     </view>
 
     <view>
-      <tab></tab>
+    <!-- 天周月tab -->
+
+      <tab period-list="{{periodList}}" active-tab='{{activeTab}}' 
+      bind:changePeriodType='changePeriodType'></tab>
     </view>
   </view>
   <view wx:for="{{speenList}}"  wx:for-item="dayDetail" wx:key="dayDetail">

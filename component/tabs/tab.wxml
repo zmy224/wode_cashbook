@@ -1,4 +1,4 @@
 <!--component/tabs/tab.wxml-->
 <view class='period'>
-<view><text wx:for="{{periodList}}"  wx:for-item="item" class='item' wx:key="{{item.id}}">{{item.text}}</text></view>
+<view><text wx:for="{{periodList}}"   class="item {{ activeTab == item.id ? 'bluecss':''}}" wx:key="id"  bindtap="changePeriodType" data-type="{{item.id}}">{{item.text}}</text></view>
 </view>

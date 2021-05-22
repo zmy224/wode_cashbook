@@ -5,7 +5,7 @@
       <view class='left'>{{dayDetail.period}}</view>
       <view class='right'>+0.00 -30.00</view>
     </view>
-    <view class='subitem' wx:for="{{dayDetail.child}}">
+    <view class='subitem' wx:for="{{dayDetail.child}}" wx:key="index">
       <view class='subleft'>
         <image src='../../static/images/tubiao_3.png'></image>
         <view class='subtop'>
@@ -13,7 +13,8 @@
          <view class='des'>{{item.description}}</view>
        </view>
         </view>
-      <view class='subright'>{{item.amount}}</view>
+       
+      <view class="subright {{item.type == 0 ? 'green':'red'}}">{{item.amount}}</view>
     </view>
   
   </view>

@@ -35,3 +35,9 @@
 .subtop .kind{
   font-size: 14px;
 }
+.red {
+  color:red;
+}
+.green{
+  color:green
+}
