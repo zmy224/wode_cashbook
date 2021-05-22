@@ -12,6 +12,6 @@
 
 }
 .bluecss {
-  color:#fff;
-  text-decoration: none;
+  color:rgb(187, 18, 178);
+  text-decoration: underline;
 }

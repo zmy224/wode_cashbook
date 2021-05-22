@@ -1,0 +1,9 @@
+<!--component/iconList/iconList.wxml-->
+<view class="iconlist">
+<view wx:for="{{iconList}}" wx:key="index">
+  <view class="item">
+  <image src="../../static/images/eat.png" alt=""class="img" /> 
+  <text>{{item.name}}</text>
+  </view>
+</view>
+</view>

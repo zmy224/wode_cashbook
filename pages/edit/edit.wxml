@@ -1,0 +1,7 @@
+<!--pages/edit/edit.wxml-->
+<view class="edit">
+    <!-- 顶部导航 -->
+    <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
+    <iconList icon-list="{{iconList}}"></iconList>
+</view>
+

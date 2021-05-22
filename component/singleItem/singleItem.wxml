@@ -1,4 +1,5 @@
 <!--component/singleItem/singleItem.wxml-->
+<!-- 首页收入列表组件 -->
 <view class='singleItem'>
   <view class='title'>
     <view style='height:20px;'>

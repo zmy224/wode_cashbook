@@ -1,0 +1,15 @@
+/* component/iconList/iconList.wxss */
+
+.iconlist {
+    display: flex;
+  
+}
+.item {
+    margin-right: 25px;
+    text-align: center;
+}
+.img {
+width: 30px;
+height: 30px;
+display: block;
+}

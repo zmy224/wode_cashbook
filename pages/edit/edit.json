@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "tab":"../../component/tabs/tab",
+    "iconList":"../../component/iconList/iconList"
+  },
+  "navigationBarTitleText":"记一笔",
+  "navigationBarTextStyle": "black"
+
+}
