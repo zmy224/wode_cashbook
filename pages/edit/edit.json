@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "tab":"../../component/tabs/tab",
-    "iconList":"../../component/iconList/iconList"
+    "iconList":"../../component/iconList/iconList",
+    "calc":"../../component/calculate/calc"
   },
   "navigationBarTitleText":"记一笔",
   "navigationBarTextStyle": "black"

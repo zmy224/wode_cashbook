@@ -1,0 +1,13 @@
+<!--component/calculate/calc.wxml计算组件-->
+
+<view class="calc">
+<!-- 数字区 -->
+<view class="number">
+<text wx:for="{{numberList}}" bindtap="chooseNumber" data-id="{{item}}" wx:key="item">{{item}}</text>
+</view>
+<!-- 运算符区 -->
+<view class="other">
+<view wx:for="{{calcList}}"  bindtap="chooseNumber" data-id="{{item}}" wx:key="item">{{item}}</view>
+</view>
+</view>
+

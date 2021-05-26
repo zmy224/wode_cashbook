@@ -15,9 +15,11 @@ Page({
                 text: '收入'
             },
         ],
+        fakeTextarea:0,  // 收入支出展示部分
         activeTab: 'outcome',
         //  收入支出种类
-        iconList: []
+        iconList: [],
+        showCalc:true
     },
     // 请求收入支出种类列表
     getIconList() {
@@ -38,13 +40,21 @@ Page({
         })
         // 重新查询列表
         this.getIconList();
-
+    },
+    // 计算器点击事件
+    chooseNum(e){
+        debugger;
+      this.setData({
+        fakeTextarea:e.detail.params
+      })
     },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        wx.hideTabBar({
+            animation:true //是否需要过渡动画
+        })
     },
 
     /**

@@ -2,6 +2,8 @@
 <view class="edit">
     <!-- 顶部导航 -->
     <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
-    <iconList icon-list="{{iconList}}"></iconList>
+    <view class="numberare" bindtap="showCalc">{{fakeTextarea}}</view>
+    <iconList icon-list="{{iconList}}" ></iconList>
+   
 </view>
-
+<calc bind:chooseNum='chooseNum'></calc>
