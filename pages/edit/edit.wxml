@@ -6,4 +6,4 @@
     <iconList icon-list="{{iconList}}" ></iconList>
    
 </view>
-<calc bind:chooseNum='chooseNum'></calc>
+<calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"></calc>

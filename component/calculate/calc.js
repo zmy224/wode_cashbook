@@ -4,15 +4,24 @@ Component({
      * 组件的属性列表
      */
     properties: {
-
+        // 数字
+        numberList:{
+            type:Array,
+            value:[]
+        },
+        // 操作符
+        calcList:{
+            type:Array,
+            value:[]
+        }
     },
 
     /**
      * 组件的初始数据
      */
     data: {
-        numberList:[1,2,3,4,5,6,7,8,9,0,'.','C'],
-        calcList:['+','-','保存']
+        // numberList:['1','2','3','4','5','6','7','8','9','0','.','C'],
+        // calcList:['+','-','保存']
     },
 
     /**
@@ -20,7 +29,6 @@ Component({
      */
     methods: {
         chooseNumber(e){
-       
         this.triggerEvent('chooseNum',{params:e.currentTarget.dataset.id})
         }
     }
