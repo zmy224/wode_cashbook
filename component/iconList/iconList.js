@@ -21,6 +21,8 @@ Component({
      * 组件的方法列表
      */
     methods: {
-
+        chooseIcon(e){
+            this.triggerEvent('chooseIcon',{params:e.target.dataset.icon})
+        }
     }
 })

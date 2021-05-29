@@ -27,7 +27,7 @@ Page({
 
   onLoad: function () {
     // this.getType();
-    // this.getDayList();
+    this.getDayList();
     if (app.globalData.userInfo) {
       this.setData({
         userInfo: app.globalData.userInfo,

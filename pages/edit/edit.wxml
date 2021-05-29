@@ -1,9 +1,10 @@
 <!--pages/edit/edit.wxml-->
 <view class="edit">
+    <navigator url="/pages/index/index" open-type="switchTab" class="topnav">回到首頁</navigator>
     <!-- 顶部导航 -->
     <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
-    <view class="numberare" bindtap="showCalc">{{fakeTextarea}}</view>
-    <iconList icon-list="{{iconList}}" ></iconList>
-   
+    <view class="numberare" >{{fakeTextarea}}</view>
+    <iconList icon-list="{{iconList}}" bind:chooseIcon='chooseIcon' ></iconList>
+  
 </view>
-<calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"></calc>
+<calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"   wx:if='{{showCalc}}'></calc>
