@@ -23,9 +23,10 @@
   display: flex;
  align-items: center;
 }
-.subitem .subleft image  {
-  width:60px;
-  height: 60px;
+.subitem .subleft .img  {
+  width:30px;
+  height: 30px;
+  margin-right: 5px;
 }
 .subtop .des {
   color:#eee;

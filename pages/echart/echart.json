@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "tab":"../../component/tabs/tab",
+    "ec-canvas":"../../tools/ec-canvas/ec-canvas"
+  },
+  "navigationBarTitleText":"图表",
+  "navigationBarTextStyle": "black"
+}

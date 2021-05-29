@@ -21,4 +21,9 @@ height: 100%;
     margin-bottom: 10px;
 
 }
-
+.edit .green {
+    color: seagreen;
+}
+.edit .red{
+    color:red
+}

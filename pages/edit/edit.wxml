@@ -3,7 +3,7 @@
     <navigator url="/pages/index/index" open-type="switchTab" class="topnav">回到首頁</navigator>
     <!-- 顶部导航 -->
     <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
-    <view class="numberare" >{{fakeTextarea}}</view>
+    <view class="numberare {{activeTab == 'outcome' ? 'green':'red'}}" >{{fakeTextarea}}</view>
     <iconList icon-list="{{iconList}}" bind:chooseIcon='chooseIcon' ></iconList>
   
 </view>

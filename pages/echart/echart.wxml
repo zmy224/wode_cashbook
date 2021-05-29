@@ -1,0 +1,9 @@
+<!--pages/echart/echart.wxml-->
+
+<view class="echart">
+ <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
+ <view class="echart-position">
+    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar"></ec-canvas>
+ </view>
+ 
+</view>

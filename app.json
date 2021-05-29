@@ -1,7 +1,8 @@
 {
     "pages": [
+        "pages/echart/echart",
         "pages/index/index",
-        "pages/edit/edit",  
+        "pages/edit/edit",
         "pages/logs/logs",
         "pages/personal/personal"
        
@@ -40,7 +41,7 @@
             {
                 "selectedIconPath": "static/images/echarts1.png",
                 "iconPath": "static/images/echarts2.png",
-                "pagePath": "pages/personal/personal",
+                "pagePath": "pages/echart/echart",
                 "text": "图表"
             },
             {

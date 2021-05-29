@@ -2,7 +2,7 @@
 <view class="iconlist">
 <view wx:for="{{iconList}}" wx:key="index">
   <view class="item">
-  <image src="../../static/images/eat.png" alt=""class="img" /> 
+  <image src="../../static/images/{{item.src}}.png" alt=""class="img" /> 
   <text  bindtap="chooseIcon" data-icon="{{item}}">{{item.name}}</text>
   </view>
 </view>

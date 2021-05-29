@@ -8,7 +8,7 @@
     </view>
     <view class='subitem' wx:for="{{dayDetail.child}}" wx:key="index">
       <view class='subleft'>
-        <image src='../../static/images/{{item.src}}.png'></image>
+        <image src='../../static/images/{{item.src}}.png' class="img"></image>
         <view class='subtop'>
         <view class='kind'>{{item.name}}</view>
          <view class='des'>{{item.description}}</view>
