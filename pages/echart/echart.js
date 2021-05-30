@@ -7,7 +7,12 @@ function setOption(chart,data){
             text: ''
         },
         tooltip: {
-            trigger: 'item'
+            trigger: 'item',
+            formatter: '{a}{b}: {c} ({d}%)',
+           
+            textStyle: {
+                fontSize: 18
+            }
         },
         legend: {
             data: []
@@ -16,10 +21,35 @@ function setOption(chart,data){
             name: '',
             type: 'pie',
             radius: ['40%', '70%'],
-            avoidLabelOverlap: false,
+            avoidLabelOverlap: true,
             label: {
-                show: false,
-                position: 'center'
+                show:true,
+                // formatter: '{b|{b}:}{c}({d}%)',
+                fontSize:12,
+                normal: {
+                    show: true,
+                    textStyle: {
+                    fontSize: 14
+                    }
+                },
+                emphasis: {
+                    show: true
+                },
+    
+                rich: {
+                    a: {
+                        color: '#999',
+                        // lineHeight: 22,
+                        align: 'center',
+                        fontSize:12,
+                    },
+                    b: {
+                        fontSize: 14,
+                        // lineHeight: 33
+                        fontSize:12,
+                    },
+                },
+                
             },
             emphasis: {
                 label: {
@@ -29,7 +59,7 @@ function setOption(chart,data){
                 }
             },
             labelLine: {
-                show: false
+                show: true
             },
             data: [
                ...data
@@ -53,6 +83,7 @@ Page({
         ],
         activeTab: 'outcome',
         echartsData: null, // echarts 数据
+        progressList:[] //  列表数据
     },
     // 收入支出切换事件
     changePeriodType(e) {
@@ -68,6 +99,7 @@ Page({
         wx.cloud.database().collection('spendD').where({
             type: this.data.activeTab == 'outcome' ? 0 : 1
         }).get().then(res => {
+            console.log(res,'eeeeeeeeeeee')
             let calcResult  = this.handleOriginData(res.data);
             this.setData({
                 echartsData:calcResult
@@ -78,17 +110,21 @@ Page({
     handleOriginData(array) {
         let result = [];
         let obj = {}
+        let total = 0  // 汇总数据用于展示进度百分比
         array.forEach(item => {
+            total += Number(item.amount);
             if (!obj[item.name]) {
                 obj[item.name] = 0;
             }
             obj[item.name] += Number(item.amount);
         })
-
+ 
         for(let key in obj){
             let temp  = {};
             temp['name'] = key;
             temp['value']= obj[key];
+            temp['total'] =  total
+            temp['rate'] =   (obj[key] / total ).toFixed(2)*100
             result.push(temp);
         }
         console.log(result,'result')

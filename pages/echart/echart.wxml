@@ -5,5 +5,10 @@
  <view class="echart-position">
     <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar"></ec-canvas>
  </view>
+ <view>
  
+ <view wx:for="{{echartsData}}" wx:key="index"  wx:for-item="progressItem">
+   <progressBar  progressItem="{{progressItem}}"></progressBar>
+  </view>
+ </view>
 </view>

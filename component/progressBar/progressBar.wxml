@@ -1,0 +1,13 @@
+<!--component/progressBar/progressBar.wxml-->
+<!-- <text>component/progressBar/progressBar.wxml</text> -->
+<view class="list">
+  <view class="left"><image src="../../static/images/eat.png" class="img"></image></view>
+  <view class="middle">
+  <view class="top">{{progressItem.name}}  {{progressItem.rate}}%</view>
+  <view class="bottom">
+    <!-- style="color:{{color}};" -->
+  <view  class="child"  style="width:{{progressItem.rate}}%"></view >
+  </view>
+  </view>
+  <!-- <view class="right">  > </view> -->
+</view>

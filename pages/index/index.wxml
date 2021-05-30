@@ -27,7 +27,7 @@
       bind:changePeriodType='changePeriodType'></tab>
     </view>
   </view>
-  <view wx:for="{{speenList}}"  wx:for-item="dayDetail" wx:key="dayDetail">
+  <view wx:for="{{speenList}}"  wx:for-item="dayDetail" wx:key="dayDetail" style="width:100%">
  
     <singleItem dayDetail="{{dayDetail}}"></singleItem>
   </view>
