@@ -100,16 +100,28 @@ Page({
   },
   // 获取花费列表
   getDayList() {
-    // 类数组对象：判断他的length是否存在---array.from转换
-    wx.cloud.database().collection('spendD').get().then(res => {
-      console.log(res, 'resss');
-      this.data.originList = res.data || [];
-      this.setData({
+   const that  = this;
+    wx.request({
+      url: 'http://127.0.0.1:3000/spendDaily', //仅为示例，并非真实的接口地址
+      data: {
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      success (res) {
+        console.log(res.data,'99999');
+        res.data.forEach(_=>{
+          _.date= _.date.slice(0,10)
+        })
+        that.setData({
         originList: res.data,
-        speenList: this.groupBy(res.data)
+        speenList: res.data// that.groupBy(res.data)
       })
-      this.data.speenList = this.groupBy(this.data.originList);
-      console.log(this.data.speenList, 'speenList')
+      console.log(that.data.speenList, 'speenList')
+      },
+      fail(err){
+        console.log(err,'99999')
+      }
     })
   },
   // 数据分组 根据天周月分
@@ -117,7 +129,7 @@ Page({
     let filter = {}; // 过滤器 
     let dResultList = [];
     list.forEach(item => {
-      item.timeD = utils.formatTime(item.time);
+      item.timeD = item.date.slice(0,10);
       // filter 存在这一天吗存在就push 不存在就设初始值是【】
       if (!filter[item.timeD]) {
         filter[item.timeD] = []

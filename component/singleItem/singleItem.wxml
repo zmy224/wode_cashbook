@@ -1,24 +1,16 @@
 <!--component/singleItem/singleItem.wxml-->
+<!-- iconfont -->
+<!-- https://www.iconfont.cn/collections/detail?spm=a313x.7781069.1998910419.dc64b3430&cid=20399 -->
 <!-- 首页收入列表组件 -->
 <view class='singleItem'>
   <view class='title'>
-    <view style='height:20px;'>
-      <view class='left'>{{dayDetail.period}}</view>
-      <view class='right'>+0.00 -30.00</view>
-    </view>
-    <view class='subitem' wx:for="{{dayDetail.child}}" wx:key="index">
       <view class='subleft'>
-        <image src='../../static/images/{{item.src}}.png' class="img"></image>
+        <image src="../../static/kindIcon/{{dayDetail.iconType}}.png" class="img"></image>
         <view class='subtop'>
-        <view class='kind'>{{item.name}}</view>
-         <view class='des'>{{item.description}}</view>
+        <view class='kind'>{{dayDetail.spendDetails}}</view>
+         <view class='des'>{{dayDetail.spendDetailText}}</view>
        </view>
-        </view>
-       
-      <view class="subright {{item.type == 0 ? 'green':'red'}}">{{item.amount}}</view>
+      </view>
+      <view class="subright {{dayDetail.sf == 0 ? 'green':'red'}}"> {{dayDetail.spend}}</view>
     </view>
-  
-  </view>
-
-
 </view>

@@ -2,6 +2,11 @@
 .singleItem  {
   margin:15px;
 }
+.singleItem .title {
+  display:flex;
+  align-items: center;
+  justify-content: space-between;
+}
 .singleItem .left {
  float: left;
 }
@@ -10,25 +15,17 @@
  float: right;
  
 }
-.subitem {
-  width: 100%;
-  height: 60px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between
- 
-}
 
-.subitem .subleft {
+.singleItem .subleft {
   display: flex;
  align-items: center;
 }
-.subitem .subleft .img  {
+.singleItem  .subleft .img  {
   width:30px;
   height: 30px;
   margin-right: 5px;
 }
-.subtop .des {
+.singleItem .subtop .des {
   color:#eee;
   font-size: 12px;
 }

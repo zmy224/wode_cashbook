@@ -1,15 +1,16 @@
 {
     "pages": [
-        "pages/echart/echart",
+       
         "pages/index/index",
         "pages/edit/edit",
         "pages/logs/logs",
-        "pages/personal/personal"
+        "pages/personal/personal",
+        "pages/echart/echart"
        
     ],
     "window": {
         "backgroundTextStyle": "light",
-        "navigationBarBackgroundColor": "#fff",
+        "navigationBarBackgroundColor": "#FDDC2D",
         "backgroundColor": "#eee",
         "enablePullDownRefresh": true,
         "navigationBarTitleText": "默认账本",
