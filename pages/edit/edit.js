@@ -11,63 +11,82 @@ Page({
                 text: '收入'
             },
         ],
-        copyfakeTextarea: '',// 备份收入支出展示部分
-        fakeTextarea: '0',  // 收入支出展示部分
-        numberList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'C'], // 计算器弹框键盘数字
-        calcList: ['+', '-', '保存'], //计算器弹框键盘操作符
+        // copyfakeTextarea: '',// 备份收入支出展示部分
+        // fakeTextarea: '0',  // 收入支出展示部分
+        // numberList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'C'], // 计算器弹框键盘数字
+        // calcList: ['+', '-', '保存'], //计算器弹框键盘操作符
         activeTab: 'outcome',
         //  收入支出种类
         iconList: [],
-        iconName:'', // 选择的名字
-        iconSrc:'' , // 选择的logo
-        isChooseIconFlag:false,
+        currentIcon:'', // 当前选择的icon分类
+        // iconName: '', // 选择的名字
+        // iconSrc: '', // 选择的logo
+        isChooseIconFlag: false,
         showCalc: false,  // 显示隐藏计算器
     },
+    // 监听属性
+    watch: {
+        activeTab: function (newValue, oldValue) {
+            console.log(newValue, oldValue); // name改变时，调用该方法输出新值。
+            let type = newValue == 'outcome' ? 0 : 1;
+            this.getIconList(type);
+        }
+    },
 
-//  選擇花費種類
-    chooseIcon(e){
+    //  選擇花費種類
+    chooseIcon(e) {
+        let obj = e.detail.params.currenticon;
         debugger;
-let obj  =  e.detail.params;
-this.setData({
-    iconName:obj.name, //名称
-    iconSrc:obj.src,
-    isChooseIconFlag:true, 
-    showCalc:true //  显示计算器
-})
+        this.setData({
+            currentIcon:obj,
+            // iconName: obj.name, //名称
+            // iconSrc: obj.src,
+            isChooseIconFlag: true,
+            showCalc: true //  显示计算器
+        })
 
     },
     // 请求收入支出种类列表
-    getIconList() {
-        wx.cloud.database().collection('inout-type').where({
-            type: this.data.activeTab
-        }).get().then(res => {
-            console.log('请求收入支出种类列表=》', res);
-            this.setData({
-                iconList: res.data
-            })
+    getIconList(type) {
+        let that = this;
+        wx.request({
+            url: 'http://127.0.0.1:3000/iconTypes', //仅为示例，并非真实的接口地址
+            data: {
+                type: type
+            },
+            method: 'POST',
+            header: {
+                'content-type': 'application/json' // 默认值
+            },
+            success(res) {
+                console.log(res.data, '0000')
+                that.setData({
+                    iconList: res.data
+                })
+            }
         })
     },
 
     // 保存花费到数据库
-    saveSpendData(amount) {
-        if(!this.data.isChooseIconFlag || !Boolean(amount) ) {
-            // alert('请选择支出种类');
-            return 
-        }
-        wx.cloud.database().collection('spendD').add({
-            // 向数据库写入数据
-            data: {
-                // id:Number(Math.random().toString().substr(3,32) + Date.now()).toString(36),  //  生成唯一id
-                amount: amount,
-                src:this.data.iconSrc,
-                name: this.data.iconName,
-                type: this.data.activeTab=='outcome' ? 0: 1,
-                time: new Date()
-            }
-        }).then(res => {
-            console.log('添加成功')
-        })
-    },
+    // saveSpendData(amount) {
+    //     if (!this.data.isChooseIconFlag || !Boolean(amount)) {
+    //         // alert('请选择支出种类');
+    //         return
+    //     }
+    //     wx.cloud.database().collection('spendD').add({
+    //         // 向数据库写入数据
+    //         data: {
+    //             // id:Number(Math.random().toString().substr(3,32) + Date.now()).toString(36),  //  生成唯一id
+    //             amount: amount,
+    //             src: this.data.iconSrc,
+    //             name: this.data.iconName,
+    //             type: this.data.activeTab == 'outcome' ? 0 : 1,
+    //             time: new Date()
+    //         }
+    //     }).then(res => {
+    //         console.log('添加成功')
+    //     })
+    // },
     // 收入支出切换事件
     changePeriodType(e) {
         console.log(e, '<=收入支出切换事件')
@@ -75,7 +94,7 @@ this.setData({
             activeTab: e.detail.params.type
         })
         // 重新查询列表
-        this.getIconList();
+
     },
     // 计算器点击事件
     chooseNum(e) {
@@ -113,16 +132,16 @@ this.setData({
             this.setData({
                 fakeTextarea: 0,
                 copyfakeTextarea: '',
-                showCalc:false
+                showCalc: false
             })
             //  回到首頁
 
             wx.switchTab({
                 url: '/pages/index/index',
-                success: function() {
-                  console.log('回到首頁')
+                success: function () {
+                    console.log('回到首頁')
                 }
-              })
+            })
 
         } else {
             //   0 作为第一位如果是0 的不能以’0‘和字符相连  0 的时候取空   不是第一位就是正常相连（用正则匹配replace0 开头的--parseint）
@@ -176,13 +195,15 @@ this.setData({
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
+        getApp().setWatcher(this); // 设置监听器
     },
 
     /**
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.getIconList();
+        let type = this.data.activeTab == 'outcome' ? 0 : 1;
+        this.getIconList(type);
     },
 
     /**

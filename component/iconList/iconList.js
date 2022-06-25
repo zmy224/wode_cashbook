@@ -22,7 +22,7 @@ Component({
      */
     methods: {
         chooseIcon(e){
-            this.triggerEvent('chooseIcon',{params:e.target.dataset.icon})
+            this.triggerEvent('chooseIcon',{params:e.target.dataset})
         }
     }
 })

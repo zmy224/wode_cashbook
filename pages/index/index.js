@@ -10,19 +10,7 @@ Page({
     originList: [],//  原始数据
     speenList: [],// 列表
     activeTab: 'D',
-    periodList: [{
-      id: 'D',
-      text: '天'
-    },
-    {
-      id: 'W',
-      text: '周'
-    },
-    {
-      id: 'M',
-      text: '月'
-    }
-    ]
+
   },
 
   onLoad: function () {
@@ -59,20 +47,6 @@ Page({
     this.setData({
       activeTab: e.detail.params.type
     })
-
-  },
-  // 小眼睛切换事件
-  toggleEyes() {
-    if (this.data.isShowEye) {
-      this.setData({
-        isShowEye: false
-      })
-    } else {
-      this.setData({
-        isShowEye: true
-      })
-    }
-
 
   },
   getUserInfo: function (e) {
@@ -120,7 +94,7 @@ Page({
       console.log(that.data.speenList, 'speenList')
       },
       fail(err){
-        console.log(err,'99999')
+       
       }
     })
   },

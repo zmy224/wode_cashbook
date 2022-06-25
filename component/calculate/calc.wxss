@@ -1,11 +1,30 @@
 /* component/calculate/calc.wxss */
-.calc {
-    display: flex;
+.caltemp {
     position: fixed;
     bottom: 0;
     width: 100%;
+    z-index: 999;
+    background-color:#fff; 
+}
+.calc {
+    display: flex;
     /* height: 100px; */
-    
+}
+.totalnote {
+    padding: 0 15px;
+    display: flex;
+    justify-content: space-between;
+    height: 50px; 
+    line-height: 50px;
+    background: rgba(0, 0,0,0.05);
+}
+.totalnote view:nth-child(1)  {
+ 
+   width: 80px;
+}
+.totalnote view:nth-child(2)  {
+   flex: 1;
+   text-align: right;
 }
 .calc .number{
     flex:3;

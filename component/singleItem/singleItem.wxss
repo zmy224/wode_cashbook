@@ -1,19 +1,11 @@
 /* component/singleItem/singleItem.wxss */
 .singleItem  {
-  margin:15px;
+  margin:5px  15px;
 }
 .singleItem .title {
   display:flex;
   align-items: center;
   justify-content: space-between;
-}
-.singleItem .left {
- float: left;
-}
-
-.singleItem .right {
- float: right;
- 
 }
 
 .singleItem .subleft {

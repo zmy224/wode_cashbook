@@ -1,9 +1,7 @@
 <!--component/iconList/iconList.wxml-->
 <view class="iconlist">
-<view wx:for="{{iconList}}" wx:key="index">
-  <view class="item">
-  <image src="../../static/images/{{item.src}}.png" alt=""class="img" /> 
-  <text  bindtap="chooseIcon" data-icon="{{item}}">{{item.name}}</text>
-  </view>
+<view wx:for="{{iconList}}" wx:key="index" class="item" >
+  <image src="../../static/kindIcon/{{item.iconType}}.png" alt=""class="img" bindtap="chooseIcon" data-currentIcon="{{item}}"/> 
+  <text   data-icon="{{item}}">{{item.iconText}}</text>
 </view>
 </view>

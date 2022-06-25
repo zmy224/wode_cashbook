@@ -8,7 +8,8 @@ Component({
       type: String,
       value: 'D'
     },
-    periodList: {
+    // tab内容
+    tabList: {
       type: Array
     }
   },
@@ -24,10 +25,9 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    changePeriodType(e) {
- 
+    changeType(e) {
       let a = e.target.dataset
-      this.triggerEvent('changePeriodType',{params:a})
+      this.triggerEvent('changeType',{params:a})
     }
   },
   attached() {

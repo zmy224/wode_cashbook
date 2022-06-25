@@ -1,10 +1,15 @@
 <!--pages/edit/edit.wxml-->
 <view class="edit">
-    <navigator url="/pages/index/index" open-type="switchTab" class="topnav">回到首頁</navigator>
-    <!-- 顶部导航 -->
-    <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
-    <view class="numberare {{activeTab == 'outcome' ? 'green':'red'}}" >{{fakeTextarea}}</view>
-    <iconList icon-list="{{iconList}}" bind:chooseIcon='chooseIcon' ></iconList>
   
+    <!-- 顶部tab -->
+    <view style="background-color: #FDDC2D;width: 100%;">
+        <tab active-tab="{{activeTab}}" tab-list="{{periodList}}" bind:changeType='changePeriodType'></tab>
+    </view>
+    <!-- {{iconList}} -->
+    <iconList icon-list="{{iconList}}" bind:chooseIcon='chooseIcon' ></iconList>
+    {{currentIcon}}
 </view>
-<calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"   wx:if='{{showCalc}}'></calc>
+
+<calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"  currentIcon='{{currentIcon}}'  wx:if='{{showCalc}}'
+activeTab='{{activeTab}}'
+></calc>
