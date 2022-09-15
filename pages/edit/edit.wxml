@@ -7,7 +7,7 @@
     </view>
     <!-- {{iconList}} -->
     <iconList icon-list="{{iconList}}" bind:chooseIcon='chooseIcon' ></iconList>
-    {{currentIcon}}
+  
 </view>
 
 <calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"  currentIcon='{{currentIcon}}'  wx:if='{{showCalc}}'
