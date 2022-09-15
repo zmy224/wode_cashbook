@@ -2,11 +2,7 @@ const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
   const day = date.getDate()
-  // const hour = date.getHours()
-  // const minute = date.getMinutes()
-  // const second = date.getSeconds()
   return [year, month, day].map(formatNumber).join('/') ;
-  // return [year, month, day].map(formatNumber).join('/') + ' ' + [hour, minute, second].map(formatNumber).join(':')
 }
 
 const formatNumber = n => {
@@ -50,9 +46,56 @@ function isSameWeek(timeStampA, timeStampB) {
 // 思路1：获取到目前的时间，然后转化到今天的凌晨的时间点的毫秒数，然后再去拉取今天星期几，再往前推对应的天数，找到当前天数所在的周一的凌晨点毫秒数，比对之前存储的数值，相同的话就是同一周，处理。不同的话就说明不是同一周，再覆盖存储周一的值，再处理。
 
 // 思路2：计算出 现在距离1970年1月1日的总天数，因为1970年1月1 是周4   所以（总天数+7）/7 取整 就是周数  如果相同就是同一周反之就不是。
+
+
+// ##写了一个函数，传入年份，返回周数数组
+export function setweekOption(year){//传入年份
+    year=new Date(year).getFullYear()
+    let days = getDay(year || new Date().getFullYear())
+    let weeks = {};
+    for (let i = 0; i < days.length; i++) {
+      let weeksKeyLen = Object.keys(weeks).length;  
+      let daySplit = days[i].split('_');
+      if (weeks[weeksKeyLen] === undefined) {
+        weeks[weeksKeyLen + 1] = [daySplit[0]]
+      } else {
+        if (daySplit[1] == '1') {
+          weeks[weeksKeyLen + 1] = [daySplit[0]]
+        } else {
+          weeks[weeksKeyLen].push(daySplit[0])
+        }
+      }
+    }
+    let option= []
+    let weeksKeyLen = Object.keys(weeks).length;
+    for(let i = 1; i < weeksKeyLen+1; i++){
+        let obj = {};
+        obj.text = "第" + i + "周"+'('+weeks[i][0]+'-'+weeks[i][weeks[i].length-1]+')';
+        console.log(year,typeof year,'year.substring(2)')
+        obj.content=year.toString().substring(2) + '-'+ i.toString().padStart(2,'0')+'w';
+        obj.value = i;
+        obj.id=i;
+        
+        option.push(obj)
+
+    }
+    return option;
+  }
+  export function getDay(year) {
+    let dates = [];
+    for (let i = 1; i <= 12; i++) {
+      for (let j = 1; j <= new Date(year, i, 0).getDate(); j++) {
+        dates.push(formatNumber(i) + '/' + formatNumber(j) + '_' + new Date([year, formatNumber(i), formatNumber(j)].join('-')).getDay())//返回当年所有日期（带星期数）
+      }
+    }
+    return dates;
+  }
+
+
 module.exports = {
   formatTime: formatTime,
   theWeekOfYear:theWeekOfYear,
   isSameWeek:isSameWeek,
-  isSameDay:isSameDay
+  isSameDay:isSameDay,
+  setweekOption
 }

@@ -1,14 +1,25 @@
 <!--pages/echart/echart.wxml-->
 
+<view class="circle-top">
+   <view class="kind">
+      <tab active-tab="{{activeKindTab}}" tab-list="{{tabList}}" bind:changeType='changeType'></tab>
+   </view>
+   <view class="prof">
+      <tab active-tab="{{activPeriodTab}}" tab-list="{{periodList}}" bind:changeType='changeType'></tab>
+   </view>
+</view>
+<!-- 天舟月滚动的tab -->
+<view>
+   <tab-item tabList="{{scrollList}}"></tab-item>
+</view>
 <view class="echart">
- <tab active-tab="{{activeTab}}" period-list="{{periodList}}" bind:changePeriodType='changePeriodType'></tab>
- <view class="echart-position">
-    <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar"></ec-canvas>
- </view>
- <view>
- 
- <view wx:for="{{echartsData}}" wx:key="index"  wx:for-item="progressItem">
-   <progressBar  progressItem="{{progressItem}}"></progressBar>
-  </view>
- </view>
+   <view class="echart-position">
+      <ec-canvas id="mychart-dom-bar" canvas-id="mychart-bar"></ec-canvas>
+   </view>
+   <view>
+
+      <view wx:for="{{echartsData}}" wx:key="index" wx:for-item="progressItem">
+         <progressBar progressItem="{{progressItem}}"></progressBar>
+      </view>
+   </view>
 </view>

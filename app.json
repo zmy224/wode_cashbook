@@ -1,18 +1,18 @@
 {
     "pages": [
+
+        "pages/echart/echart",
         "pages/edit/edit",
         "pages/index/index",
         "pages/logs/logs",
-        "pages/personal/personal",
-        "pages/echart/echart"
-       
+        "pages/personal/personal"
     ],
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#FDDC2D",
-        "backgroundColor": "#eee",
+        "backgroundColor": "#FDDC2D",
         "enablePullDownRefresh": true,
-        "navigationBarTitleText": "默认账本",
+        "navigationBarTitleText": "记账本",
         "navigationBarTextStyle": "black"
     },
     "tabBar": {

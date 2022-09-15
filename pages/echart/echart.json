@@ -2,7 +2,8 @@
   "usingComponents": {
     "tab":"../../component/tabs/tab",
     "ec-canvas":"../../tools/ec-canvas/ec-canvas",
-    "progressBar":"../../component/progressBar/progressBar"
+    "progressBar":"../../component/progressBar/progressBar",
+    "tab-item":"../../component/tabItem/tabItem"
   },
   "navigationBarTitleText":"图表",
   "navigationBarTextStyle": "black"

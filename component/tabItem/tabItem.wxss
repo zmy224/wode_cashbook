@@ -1,0 +1,19 @@
+/* component/tabItem.wxss */
+.page-section-spacing  {
+  height: 50px;
+  width: 100%;
+  overflow-x: scroll;
+  display: flex;
+  /* flex-wrap: wrap; */
+}
+.tab-item {
+  padding:0  10px ;
+  color:#aaa;
+  min-width: 60px;
+  height: 40px;
+  line-height: 40px;
+}
+.tab-item.active {
+  color:#000;
+  text-decoration: underline;
+}

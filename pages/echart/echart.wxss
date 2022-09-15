@@ -1,4 +1,17 @@
 /* pages/echart/echart.wxss */
+.circle-top {
+  height: 50px;
+  background-color: hsl(50, 98%, 58%);
+  display: flex;
+}
+.kind {
+  flex:1
+}
+.prof {
+  flex:1.5;
+  margin-left: 15px;
+}
+
 
 .echart {
   padding: 0 20px;

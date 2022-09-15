@@ -3,11 +3,11 @@
   
     <!-- 顶部tab -->
     <view style="background-color: #FDDC2D;width: 100%;">
-        <tab active-tab="{{activeTab}}" tab-list="{{periodList}}" bind:changeType='changePeriodType'></tab>
+        <tab active-tab="{{activeTab}}" tab-list="{{periodList}}" bind:changeType='changeType'></tab>
     </view>
     <!-- {{iconList}} -->
     <iconList icon-list="{{iconList}}" bind:chooseIcon='chooseIcon' ></iconList>
-    {{currentIcon}}
+  
 </view>
 
 <calc bind:chooseNum='chooseNum' numberList = '{{numberList}}' calcList="{{calcList}}"  currentIcon='{{currentIcon}}'  wx:if='{{showCalc}}'
