@@ -36,7 +36,6 @@ Page({
     //  選擇花費種類
     chooseIcon(e) {
         let obj = e.detail.params.currenticon;
-        debugger;
         this.setData({
             currentIcon:obj,
             // iconName: obj.name, //名称
@@ -66,35 +65,13 @@ Page({
             }
         })
     },
-
-    // 保存花费到数据库
-    // saveSpendData(amount) {
-    //     if (!this.data.isChooseIconFlag || !Boolean(amount)) {
-    //         // alert('请选择支出种类');
-    //         return
-    //     }
-    //     wx.cloud.database().collection('spendD').add({
-    //         // 向数据库写入数据
-    //         data: {
-    //             // id:Number(Math.random().toString().substr(3,32) + Date.now()).toString(36),  //  生成唯一id
-    //             amount: amount,
-    //             src: this.data.iconSrc,
-    //             name: this.data.iconName,
-    //             type: this.data.activeTab == 'outcome' ? 0 : 1,
-    //             time: new Date()
-    //         }
-    //     }).then(res => {
-    //         console.log('添加成功')
-    //     })
-    // },
     // 收入支出切换事件
-    changePeriodType(e) {
+    changeType(e) {
         console.log(e, '<=收入支出切换事件')
         this.setData({
             activeTab: e.detail.params.type
         })
         // 重新查询列表
-
     },
     // 计算器点击事件
     chooseNum(e) {

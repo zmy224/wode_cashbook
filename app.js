@@ -1,6 +1,7 @@
 //app.js
 App({
   onLaunch: function () {
+
     // 展示本地存储能力
     wx.cloud.init({
       env:'cashbook-4g5ikoxr888c33de',
@@ -37,7 +38,7 @@ App({
       }
     })
   },
-
+   
     /**
      * 设置监听器
      */

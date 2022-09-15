@@ -1,19 +1,19 @@
 /**index.wxss**/
 .navTop {
-  height: 80px;
+  height: 50px;
   width:100%;
   background-color: #FDDC2D;
  
-  padding-top:5px;
+  /* padding-top:5px; */
 }
 .navTop .top-title {
   display:flex;
-  margin-bottom: 25rpx;
+  /* margin-bottom: 25rpx; */
   padding: 0 15px;
 }
 .navTop .top-title .img {
   width:15px;
-  height:10px;
+  height: 10px;
   display: inline-block;
 }
 .navTop .top-title view {

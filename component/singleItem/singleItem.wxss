@@ -15,10 +15,13 @@
 .singleItem  .subleft .img  {
   width:30px;
   height: 30px;
+  border-radius: 50%;
+  padding:5px;
+  background-color: #F5F5F5;
   margin-right: 5px;
 }
 .singleItem .subtop .des {
-  color:#eee;
+  color:rgb(170, 169, 169);
   font-size: 12px;
 }
 

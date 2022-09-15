@@ -1,0 +1,4 @@
+<!--component/tabItem.wxml-->
+  <view class='page-section-spacing'>
+    <view class="tab-item active" wx:for="{{tabList}}" bindtap="tabClick"  wx:key="id" data-id="{{item.id}}"   id="tab_{{item.id}}" data-index="{{index}}">{{item.content}}</view>
+  </view>

@@ -1,0 +1,24 @@
+{
+  "name": "wode_cashbook",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "dependencies": {
+    "lodash": "^4.17.21"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zmy224/wode_cashbook.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zmy224/wode_cashbook/issues"
+  },
+  "homepage": "https://github.com/zmy224/wode_cashbook#readme"
+}

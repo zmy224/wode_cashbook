@@ -185,7 +185,7 @@ Component({
          url: 'http://127.0.0.1:3000/insertDaily', //仅为示例，并非真实的接口地址
          data: {
             date:'2022-05-25',  // 日期
-            sf:that.activeTab=='income'?'1':'0', // 收入还是支出
+            sf:that.properties.activeTab=='income'?'1':'0', // 收入还是支出
             spendDetails:that.properties.currentIcon.iconText, // 购买的东西
             spend:amount ,// 消费金额
             iconType:that.properties.currentIcon.iconType

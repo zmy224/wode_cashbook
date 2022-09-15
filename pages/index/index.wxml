@@ -2,18 +2,28 @@
 <view class="container">
   <view class="navTop">
     <view class="top-title">
-      <view>2022年</view>
+      <view>{{showYear}}年</view>
       <view>支出</view>
       <view>收入</view>
     </view>
     <view class='top-title font16'>
-      <view>6月 <image src="../../static/icons/arrow_down.png" class="img"></image></view>
+      <view>
+        <view class="section">
+          <picker mode="date" value="{{date}}" start="2015-09" end="2025-09-01" bindchange="bindDateChange" fields="month">
+            <view class="picker">
+              {{showMonth}}  <image src="../../static/icons/arrow_down.png" class="img"></image>
+            </view>
+          </picker>
+        </view>
+      
+      </view>
       <view>233</view>
       <view>56</view>
     </view>
   </view>
-  <view wx:for="{{speenList}}"  wx:for-item="dayDetail" wx:key="dayDetail" style="width:100%;border-bottom: 1px solid #ececec;">
+
+  <view wx:for="{{speenList}}" wx:for-item="dayDetail" wx:key="dayDetail" style="width:100%;border-bottom: 1px solid #ececec;">
     <singleItem dayDetail="{{dayDetail}}"></singleItem>
   </view>
- 
+
 </view>

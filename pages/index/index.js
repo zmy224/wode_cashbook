@@ -10,11 +10,38 @@ Page({
     originList: [],//  原始数据
     speenList: [],// 列表
     activeTab: 'D',
-
+    date: '',
+    showMonth: '',  // 月
+    showYear: '',// 年
   },
-
+  watch: {
+    date: function (newVal, oldVal) {
+      console.log(newVal, oldVal);
+      let Month = newVal.split('-')[1];
+      let year = newVal.split('-')[0];
+      // let  shortName = newVal.substring(newValLength-2,newValLength);
+      this.setData({
+        showMonth: Month,
+        showYear: year
+      })
+    }
+  },
+  bindDateChange(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value);
+    this.setData({
+      date: e.detail.value
+    })
+  },
   onLoad: function () {
-    // this.getType();
+    getApp().setWatcher(this); // 设置监听器
+    let date = new Date();
+    let year = date.getFullYear();
+    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    console.log(year, month, 'kkkkkk');
+    // debugger;
+    this.setData({
+      date: year + '-' + month
+    })
     this.getDayList();
     if (app.globalData.userInfo) {
       this.setData({
@@ -74,7 +101,7 @@ Page({
   },
   // 获取花费列表
   getDayList() {
-   const that  = this;
+    const that = this;
     wx.request({
       url: 'http://127.0.0.1:3000/spendDaily', //仅为示例，并非真实的接口地址
       data: {
@@ -82,19 +109,19 @@ Page({
       header: {
         'content-type': 'application/json' // 默认值
       },
-      success (res) {
-        console.log(res.data,'99999');
-        res.data.forEach(_=>{
-          _.date= _.date.slice(0,10)
+      success(res) {
+        console.log(res.data, '99999');
+        res.data.forEach(_ => {
+          _.date = _.date.slice(0, 10)
         })
         that.setData({
-        originList: res.data,
-        speenList: res.data// that.groupBy(res.data)
-      })
-      console.log(that.data.speenList, 'speenList')
+          originList: res.data,
+          speenList: res.data// that.groupBy(res.data)
+        })
+        console.log(that.data.speenList, 'speenList')
       },
-      fail(err){
-       
+      fail(err) {
+
       }
     })
   },
@@ -103,7 +130,7 @@ Page({
     let filter = {}; // 过滤器 
     let dResultList = [];
     list.forEach(item => {
-      item.timeD = item.date.slice(0,10);
+      item.timeD = item.date.slice(0, 10);
       // filter 存在这一天吗存在就push 不存在就设初始值是【】
       if (!filter[item.timeD]) {
         filter[item.timeD] = []

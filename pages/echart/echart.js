@@ -1,7 +1,8 @@
 // pages/echart/echart.js
 
 import * as echarts from '../../tools/ec-canvas/echarts';
-function setOption(chart,data){
+import utils from '../../utils/util'
+function setOption(chart, data) {
     var option = {
         title: {
             text: ''
@@ -9,7 +10,7 @@ function setOption(chart,data){
         tooltip: {
             trigger: 'item',
             formatter: '{a}{b}: {c} ({d}%)',
-           
+
             textStyle: {
                 fontSize: 18
             }
@@ -23,33 +24,33 @@ function setOption(chart,data){
             radius: ['40%', '70%'],
             avoidLabelOverlap: true,
             label: {
-                show:true,
+                show: true,
                 // formatter: '{b|{b}:}{c}({d}%)',
-                fontSize:12,
+                fontSize: 12,
                 normal: {
                     show: true,
                     textStyle: {
-                    fontSize: 14
+                        fontSize: 14
                     }
                 },
                 emphasis: {
                     show: true
                 },
-    
+
                 rich: {
                     a: {
                         color: '#999',
                         // lineHeight: 22,
                         align: 'center',
-                        fontSize:12,
+                        fontSize: 12,
                     },
                     b: {
                         fontSize: 14,
                         // lineHeight: 33
-                        fontSize:12,
+                        fontSize: 12,
                     },
                 },
-                
+
             },
             emphasis: {
                 label: {
@@ -62,7 +63,7 @@ function setOption(chart,data){
                 show: true
             },
             data: [
-               ...data
+                ...data
             ]
         }]
     };
@@ -71,7 +72,7 @@ function setOption(chart,data){
 }
 Page({
     data: {
-        periodList: [
+        tabList: [
             {
                 id: 'outcome',
                 text: '支出'
@@ -81,10 +82,37 @@ Page({
                 text: '收入'
             },
         ],
-        activeTab: 'outcome',
+        periodList: [
+            {
+                id: 'W',
+                text: '周'
+            },
+            {
+                id: 'M',
+                text: '月'
+            },
+            {
+                id: 'Y',
+                text: '年'
+            },
+        ],
+        activeKindTab: 'outcome',
+        activPeriodTab: 'W',
         echartsData: null, // echarts 数据
-        progressList:[] //  列表数据
+        progressList: [],//  列表数据
+        scrollList: [
+        // { content: '22-06', id: '1' },
+        // { content: '22-07', id: '2' },
+        // { content: '22-07', id: '3' },
+        // { content: '22-07', id: '4' },
+        // { content: '22-07', id: '5' },
+        // { content: '22-07', id: '6' },
+        // { content: '22-07', id: '7' },
+        // { content: '22-07', id: '8' }
+    ],
+        // screenWidth: '',
     },
+
     // 收入支出切换事件
     changePeriodType(e) {
         console.log(e, '<=收入支出切换事件')
@@ -99,10 +127,10 @@ Page({
         wx.cloud.database().collection('spendD').where({
             type: this.data.activeTab == 'outcome' ? 0 : 1
         }).get().then(res => {
-            console.log(res,'eeeeeeeeeeee')
-            let calcResult  = this.handleOriginData(res.data);
+            console.log(res, 'eeeeeeeeeeee')
+            let calcResult = this.handleOriginData(res.data);
             this.setData({
-                echartsData:calcResult
+                echartsData: calcResult
             })
             this.init_one(calcResult)
         })
@@ -118,34 +146,39 @@ Page({
             }
             obj[item.name] += Number(item.amount);
         })
- 
-        for(let key in obj){
-            let temp  = {};
+
+        for (let key in obj) {
+            let temp = {};
             temp['name'] = key;
-            temp['value']= obj[key];
-            temp['total'] =  total
-            temp['rate'] =   (obj[key] / total ).toFixed(2)*100
+            temp['value'] = obj[key];
+            temp['total'] = total
+            temp['rate'] = (obj[key] / total).toFixed(2) * 100
             result.push(temp);
         }
-        console.log(result,'result')
+        console.log(result, 'result')
         return result
     },
     /**
    * 生命周期函数--监听页面加载
    */
 
-  init_one: function (data) {           //初始化第一个图表
-    this.echartComponent.init((canvas, width, height) => {
-        const chart = echarts.init(canvas, null, {
-            width: width,
-            height: height
+    init_one: function (data) {           //初始化第一个图表
+        this.echartComponent.init((canvas, width, height) => {
+            const chart = echarts.init(canvas, null, {
+                width: width,
+                height: height
+            });
+            setOption(chart, data)
+            this.chart = chart;
+            return chart;
         });
-        setOption(chart,data)
-        this.chart = chart;
-        return chart;
-    });
-},
+    },
     onLoad: function (options) {
+        let weeks = utils.setweekOption('2022');
+        // console.log(weeks,'import setweekOption fr')
+        this.setData({
+            scrollList:weeks
+        })
         this.getEchartData()
     },
 
@@ -153,7 +186,7 @@ Page({
      * 生命周期函数--监听页面初次渲染完成
      */
     onReady: function () {
-        this.echartComponent = this.selectComponent('#mychart-dom-bar');  
+        this.echartComponent = this.selectComponent('#mychart-dom-bar');
     },
 
     /**
