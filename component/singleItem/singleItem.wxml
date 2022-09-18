@@ -7,10 +7,10 @@
       <view class='subleft'>
         <image src="../../static/kindIcon/{{dayDetail.iconType}}.png" class="img"></image>
         <view class='subtop'>
-        <view class='kind'>{{dayDetail.spendDetails}}</view>
-         <view class='des'>{{dayDetail.date}}</view>
+        <view class='kind'>{{dayDetail.notes}}</view>
+         <view class='des'>{{dayDetail.dateTime}}</view>
        </view>
       </view>
-      <view class="subright {{dayDetail.sf == 0 ? 'green':'red'}}"> {{dayDetail.spend}}</view>
+      <view class="subright {{dayDetail.costFlag == 0 ? 'green':'red'}}"> {{dayDetail.spend}}</view>
     </view>
 </view>

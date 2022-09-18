@@ -49,16 +49,15 @@ Page({
     getIconList(type) {
         let that = this;
         wx.request({
-            url: 'http://127.0.0.1:3000/iconTypes', //仅为示例，并非真实的接口地址
+            url: 'http://127.0.0.1:3000/iconType', //仅为示例，并非真实的接口地址
             data: {
-                type: type
+                // type: type
             },
             method: 'POST',
             header: {
                 'content-type': 'application/json' // 默认值
             },
             success(res) {
-                console.log(res.data, '0000')
                 that.setData({
                     iconList: res.data
                 })

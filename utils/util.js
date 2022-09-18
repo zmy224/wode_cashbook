@@ -71,7 +71,6 @@ export function setweekOption(year){//传入年份
     for(let i = 1; i < weeksKeyLen+1; i++){
         let obj = {};
         obj.text = "第" + i + "周"+'('+weeks[i][0]+'-'+weeks[i][weeks[i].length-1]+')';
-        console.log(year,typeof year,'year.substring(2)')
         obj.content=year.toString().substring(2) + '-'+ i.toString().padStart(2,'0')+'w';
         obj.value = i;
         obj.id=i;

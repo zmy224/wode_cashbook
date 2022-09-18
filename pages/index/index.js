@@ -2,7 +2,7 @@
 //获取应用实例
 let utils = require('../../utils/util.js')
 const app = getApp()
-
+let  dayjs = require('dayjs')
 Page({
   data: {
     // 小眼睛
@@ -33,6 +33,8 @@ Page({
     })
   },
   onLoad: function () {
+    debugger;
+    var s = dayjs().format('YYYY-MM-DD');
     getApp().setWatcher(this); // 设置监听器
     let date = new Date();
     let year = date.getFullYear();
@@ -112,13 +114,13 @@ Page({
       success(res) {
         console.log(res.data, '99999');
         res.data.forEach(_ => {
-          _.date = _.date.slice(0, 10)
+          _.date = _.dateTime.slice(0, 10)
         })
         that.setData({
           originList: res.data,
           speenList: res.data// that.groupBy(res.data)
         })
-        console.log(that.data.speenList, 'speenList')
+
       },
       fail(err) {
 

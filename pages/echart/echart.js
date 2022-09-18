@@ -127,7 +127,7 @@ Page({
         wx.cloud.database().collection('spendD').where({
             type: this.data.activeTab == 'outcome' ? 0 : 1
         }).get().then(res => {
-            console.log(res, 'eeeeeeeeeeee')
+            // console.log(res, 'eeeeeeeeeeee')
             let calcResult = this.handleOriginData(res.data);
             this.setData({
                 echartsData: calcResult
