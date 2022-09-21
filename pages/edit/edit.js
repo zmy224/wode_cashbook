@@ -1,4 +1,5 @@
 // pages/edit/edit.js
+import { getIconTypeApi } from '../../server/api/edit'
 Page({
     data: {
         periodList: [
@@ -11,16 +12,10 @@ Page({
                 text: '收入'
             },
         ],
-        // copyfakeTextarea: '',// 备份收入支出展示部分
-        // fakeTextarea: '0',  // 收入支出展示部分
-        // numberList: ['1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '.', 'C'], // 计算器弹框键盘数字
-        // calcList: ['+', '-', '保存'], //计算器弹框键盘操作符
         activeTab: 'outcome',
         //  收入支出种类
         iconList: [],
-        currentIcon:'', // 当前选择的icon分类
-        // iconName: '', // 选择的名字
-        // iconSrc: '', // 选择的logo
+        currentIcon: '', // 当前选择的icon分类
         isChooseIconFlag: false,
         showCalc: false,  // 显示隐藏计算器
     },
@@ -37,7 +32,7 @@ Page({
     chooseIcon(e) {
         let obj = e.detail.params.currenticon;
         this.setData({
-            currentIcon:obj,
+            currentIcon: obj,
             // iconName: obj.name, //名称
             // iconSrc: obj.src,
             isChooseIconFlag: true,
@@ -48,20 +43,15 @@ Page({
     // 请求收入支出种类列表
     getIconList(type) {
         let that = this;
-        wx.request({
-            url: 'http://127.0.0.1:3000/iconType', //仅为示例，并非真实的接口地址
-            data: {
-                // type: type
-            },
-            method: 'POST',
-            header: {
-                'content-type': 'application/json' // 默认值
-            },
-            success(res) {
-                that.setData({
-                    iconList: res.data
-                })
-            }
+        getIconTypeApi({
+            type: type 
+        })
+       .then(res=>{
+            that.setData({
+                iconList: res.data
+             })
+        },err=>{
+            console.err(err)
         })
     },
     // 收入支出切换事件
@@ -86,7 +76,6 @@ Page({
             let temp = this.data.copyfakeTextarea;
             let tempResult = this.getResultBy(temp);
             // 先计算结果赋值给文框
-            console.log(this.getResultBy(temp), 'lllllllll')
             //   清空备份数据   将= 变成保存
             this.setData({
                 fakeTextarea: tempResult,
@@ -112,11 +101,13 @@ Page({
             })
             //  回到首頁
 
-            wx.switchTab({
-                url: '/pages/index/index',
-                success: function () {
-                    console.log('回到首頁')
-                }
+            setTimeout(() => {
+                wx.switchTab({
+                    url: '/pages/index/index',
+                    success: function () {
+                        console.log('回到首頁')
+                    }
+                })
             })
 
         } else {
@@ -187,6 +178,9 @@ Page({
      */
     onShow: function () {
 
+        this.data.showCalc && this.setData({
+            showCalc: false
+        })
     },
 
     /**

@@ -33,9 +33,11 @@ connection.connect((err) => {
 });
 
 // 获取收支流水详情列表
-app.get("/spendDaily", function (req, res) {
-  console.log(req.query);
-const testsql = 'select * from  d_spend_table;'
+app.post("/spendDaily", function (req, res) {
+  console.log(req.body);
+let params = req.body;
+// limit  i  n   表示从第几条开始  向后偏移n条数据   从 0 -9    10-19  20-29 
+const testsql = `select * from  d_spend_table  order by dateTime asc LIMIT ${params.pageSize*(params.currentPage-1)}, 10`
   connection.query(testsql , function (err, data) {
     if (err) {
       console.log(err);
@@ -49,7 +51,9 @@ const testsql = 'select * from  d_spend_table;'
 
 //  收入支出类型
 app.post("/iconType", function (req, res) {
-const testsql = 'select * from  icon_types;'
+const params = req.body;
+console.log(params,'params')
+const testsql = `select * from  icon_types where costFlag = ${params.type}`
   connection.query(testsql , function (err, data) {
     if (err) {
       console.log(err);

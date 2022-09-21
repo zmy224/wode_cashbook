@@ -36,7 +36,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
-    tabClick(e) {    debugger;
+    tabClick(e) {    
       // 获取当前点击元素的index  和id
       let { id, index } = e.target.dataset;
       // 获取当前点击的元素dom

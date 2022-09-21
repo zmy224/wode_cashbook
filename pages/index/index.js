@@ -2,7 +2,8 @@
 //获取应用实例
 let utils = require('../../utils/util.js')
 const app = getApp()
-let  dayjs = require('dayjs')
+let dayjs = require('dayjs')
+import { getSpendDailyApi } from '../../server/api/index'
 Page({
   data: {
     // 小眼睛
@@ -27,20 +28,17 @@ Page({
     }
   },
   bindDateChange(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value);
     this.setData({
       date: e.detail.value
     })
   },
   onLoad: function () {
-    debugger;
     var s = dayjs().format('YYYY-MM-DD');
     getApp().setWatcher(this); // 设置监听器
     let date = new Date();
     let year = date.getFullYear();
     let month = (date.getMonth() + 1).toString().padStart(2, '0');
-    console.log(year, month, 'kkkkkk');
-    // debugger;
+
     this.setData({
       date: year + '-' + month
     })
@@ -86,45 +84,23 @@ Page({
       hasUserInfo: true
     })
   },
-  // 测试获取接口数据
-  getType() {
-    let that = this;
-    wx.request({
-      url: 'http://localhost:3306/getType',
-      // method: 'GET',
-      data: {},
-      header: {
-        'content-type': 'application/json'
-      },
-      success(res) {
-        console.log(res)
-      }
-    })
-  },
+
   // 获取花费列表
   getDayList() {
     const that = this;
-    wx.request({
-      url: 'http://127.0.0.1:3000/spendDaily', //仅为示例，并非真实的接口地址
-      data: {
-      },
-      header: {
-        'content-type': 'application/json' // 默认值
-      },
-      success(res) {
-        console.log(res.data, '99999');
-        res.data.forEach(_ => {
-          _.date = _.dateTime.slice(0, 10)
-        })
-        that.setData({
-          originList: res.data,
-          speenList: res.data// that.groupBy(res.data)
-        })
-
-      },
-      fail(err) {
-
-      }
+    let params = {
+      pageSize: 10,
+      currentPage: 1,
+    }
+    getSpendDailyApi(params).then(res => {
+      console.log(res.data, '99999');
+      res.data.forEach(_ => {
+        _.date = _.dateTime.slice(0, 10)
+      })
+      that.setData({
+        originList: res.data,
+        speenList: res.data// that.groupBy(res.data)
+      })
     })
   },
   // 数据分组 根据天周月分
@@ -150,7 +126,4 @@ Page({
     // console.log(dResultList,'dResultList')
     return dResultList
   }
-
-
-
 })
