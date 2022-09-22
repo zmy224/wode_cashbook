@@ -1,6 +1,7 @@
 {
   "usingComponents": {
         "singleItem":"../../component/singleItem/singleItem"
-  }
+  },
+  "enablePullDownRefresh": true
 
 }

@@ -8,19 +8,19 @@ Page({
   data: {
     // 小眼睛
     isShowEye: true,
-    originList: [],//  原始数据
+
     speenList: [],// 列表
     activeTab: 'D',
-    date: '',
+    date: '',  // 日期   年月 
+    currentPage: 1,// 做分页使用 当前页
     showMonth: '',  // 月
     showYear: '',// 年
+    hasMore: true,// 是否加载下一页
   },
   watch: {
     date: function (newVal, oldVal) {
-      console.log(newVal, oldVal);
       let Month = newVal.split('-')[1];
       let year = newVal.split('-')[0];
-      // let  shortName = newVal.substring(newValLength-2,newValLength);
       this.setData({
         showMonth: Month,
         showYear: year
@@ -35,12 +35,12 @@ Page({
   onLoad: function () {
     var s = dayjs().format('YYYY-MM-DD');
     getApp().setWatcher(this); // 设置监听器
-    let date = new Date();
-    let year = date.getFullYear();
-    let month = (date.getMonth() + 1).toString().padStart(2, '0');
+    let date = dayjs(new Date()).format('YYYY-MM');;
+    // let year = date.getFullYear();
+    // let month = (date.getMonth() + 1).toString().padStart(2, '0');
 
     this.setData({
-      date: year + '-' + month
+      date: date
     })
     this.getDayList();
     if (app.globalData.userInfo) {
@@ -88,42 +88,45 @@ Page({
   // 获取花费列表
   getDayList() {
     const that = this;
+    console.log(that.data.hasMore,'that.data.hasMore')
+    if (!that.data.hasMore) return;
+    // 显示导航栏loading
+    wx.showNavigationBarLoading();
     let params = {
       pageSize: 10,
-      currentPage: 1,
+      currentPage: this.data.currentPage++
     }
     getSpendDailyApi(params).then(res => {
-      console.log(res.data, '99999');
-      res.data.forEach(_ => {
+      // 判断当前返回条数是不是》= 当前size
+      res.data.list.forEach(_ => {
         _.date = _.dateTime.slice(0, 10)
       })
       that.setData({
-        originList: res.data,
-        speenList: res.data// that.groupBy(res.data)
+        speenList: that.data.speenList.concat(res.data.list),
+        hasMore: res.data.list.length >= 10  // 大于等于表示true 还有下一页
       })
+
+      // 隐藏导航栏loading
+      wx.hideNavigationBarLoading();
+      // 当处理完数据刷新后，wx.stopPullDownRefresh可以停止当前页面的下拉刷新
+      wx.stopPullDownRefresh();
     })
   },
-  // 数据分组 根据天周月分
-  groupBy(list) {
-    let filter = {}; // 过滤器 
-    let dResultList = [];
-    list.forEach(item => {
-      item.timeD = item.date.slice(0, 10);
-      // filter 存在这一天吗存在就push 不存在就设初始值是【】
-      if (!filter[item.timeD]) {
-        filter[item.timeD] = []
-      }
-      filter[item.timeD].push(item);
+  // 下拉刷新
+  onPullDownRefresh() {
+    this.setData({
+      currentPage: 1,
+    }, () => {
+
+      this.getDayList()
     })
-    for (let key in filter) {
-      dResultList.push({
-        period: key,
-        child: filter[key]
-      });
-    }
-    // return filter 
-    // 对象遍历出问题了 还是转换成数组
-    // console.log(dResultList,'dResultList')
-    return dResultList
+  },
+
+  onReachBottom(){
+    const that  = this;
+    console.log(that.data.hasMore,'that.data.hasMore')
+  if (!that.data.hasMore) return;
+   this.getDayList()
   }
+
 })

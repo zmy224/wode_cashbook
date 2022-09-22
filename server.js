@@ -36,14 +36,30 @@ connection.connect((err) => {
 app.post("/spendDaily", function (req, res) {
   console.log(req.body);
 let params = req.body;
+// 先获取总条数
+const countsql  = 'SELECT COUNT(*) AS total FROM d_spend_table'
+
 // limit  i  n   表示从第几条开始  向后偏移n条数据   从 0 -9    10-19  20-29 
 const testsql = `select * from  d_spend_table  order by dateTime asc LIMIT ${params.pageSize*(params.currentPage-1)}, 10`
-  connection.query(testsql , function (err, data) {
+  connection.query(testsql , function (err, dataList) {
     if (err) {
       console.log(err);
     } else {
-      res.end(JSON.stringify(data));
-      speedD=  {...res}
+
+      connection.query(countsql,function (err,data) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(data,'total',data[0].total);
+          res.end(JSON.stringify({
+            total:data[0].total,  // 总数
+            list:dataList , // 列表
+          }));
+        //  total = data
+        }
+      })
+      // res.end(JSON.stringify(data));
+
     }
    
   });
